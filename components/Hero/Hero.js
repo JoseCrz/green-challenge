@@ -54,11 +54,20 @@ export const Hero = () => {
 
   return (
     <Box height='calc(100vh - 94px)' mr={3} ml={3}>
-      <GridLayout height='100%' gridTemplateColumns='1fr 1fr'>
-        <GridItem>
+      <GridLayout
+        height='100%'
+        gridTemplateColumns={['1fr', '1fr 1fr']}
+        gridTemplateAreas={[`
+        "imageSlider"
+        "textSlider"
+        `, `
+          "textSlider imageSlider"
+        `]}
+      >
+        <GridItem gridArea='textSlider' align>
           <TextSlider currentStep={currentStep} texts={texts} onDotClick={handleDotClick} />
         </GridItem>
-        <GridItem>
+        <GridItem gridArea='imageSlider' alignSelf='center'>
           <ImageSlider currentStep={currentStep} onPrev={prevStep} onNext={nextStep} images={images} />
         </GridItem>
       </GridLayout>

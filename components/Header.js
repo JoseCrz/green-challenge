@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { SiOverleaf } from 'react-icons/si'
+import { Box } from '@/primitives/Box'
 
 const StyledHeader = styled.header`
   display: flex;
@@ -15,10 +16,17 @@ const Ul = styled.ul`
   display: flex;
 `
 
-const Li = styled.li`
+const StyledLi = styled.li`
   text-transform: uppercase;
-  margin-left: ${({ theme }) => theme.space[4]};
 `
+
+const Li = ({ children }) => {
+  return (
+    <Box ml={[2, 4]}>
+      <StyledLi>{children}</StyledLi>
+    </Box>
+  )
+}
 
 export const Header = () => {
   return (

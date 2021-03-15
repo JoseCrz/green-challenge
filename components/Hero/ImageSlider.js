@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi'
-import { Box } from '@/primitives/Box'
+import { Flex } from '@/primitives/Flex'
+import { Img } from '@/primitives/Img'
 
 const Button = styled.button`
   cursor: pointer;
@@ -18,11 +19,11 @@ const Button = styled.button`
 `
 export const ImageSlider = ({ images, currentStep, onPrev = () => {}, onNext = () => {} }) => {
   return (
-    <Box position='relative'>
-      <img src={images[currentStep]} alt='Forest' />
-      <Box
-        display='flex'
-        position='absolute'
+    <Flex position='relative' flexDirection={['column', 'row']} alignItems='center'>
+      <Img width={['80%', '100%']} src={images[currentStep]} alt='Forest' />
+      <Flex
+        mt={[4, 0]}
+        position={['initial', 'absolute']}
         right='0'
         bottom='0'
       >
@@ -32,7 +33,7 @@ export const ImageSlider = ({ images, currentStep, onPrev = () => {}, onNext = (
         <Button onClick={onNext}>
           <FiChevronRight />
         </Button>
-      </Box>
-    </Box>
+      </Flex>
+    </Flex>
   )
 }

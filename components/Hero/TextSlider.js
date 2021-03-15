@@ -10,7 +10,7 @@ const Dot = styled.div`
   width: 10px;
   border-radius: 50%;
   background-color: ${({ theme, isActive }) => isActive ? theme.colors.black : theme.colors.gray};
-  margin-top: ${({ theme }) => theme.space[2]};
+  margin: ${({ theme }) => theme.space[2]};
   transition: cubic-bezier(0.645, 0.045, 0.355, 1) .2s;
 
   &:hover {
@@ -20,7 +20,7 @@ const Dot = styled.div`
 
 const DotSlider = ({ elements, onDotClick, currentStep }) => {
   return (
-    <Box>
+    <Box display={['flex', 'block']}>
       {
         elements.map((element, index) =>
           (<Dot key={`dot-${index}`} onClick={() => onDotClick(index)} isActive={currentStep === index} />)
@@ -33,26 +33,27 @@ const DotSlider = ({ elements, onDotClick, currentStep }) => {
 export const TextSlider = ({ texts, currentStep, onDotClick }) => {
   return (
     <>
-      <Flex>
+      <Flex flexDirection={['column-reverse', 'row']}>
         <Box>
           <Flex
             height='100%'
-            flexDirection='column'
-            justifyContent='flex-end'
+            flexDirection={['row', 'column']}
+            justifyContent={['center', 'flex-end']}
             alignItems='center'
-            mr={4}
+            mr={[0, 4]}
+            mt={[3, 0]}
           >
             <DotSlider elements={texts} onDotClick={onDotClick} currentStep={currentStep} />
           </Flex>
         </Box>
-        <Box>
-          <Text as='h1' fontSize={6}>
+        <Flex flexDirection='column' alignItems={['center', 'flex-start']}>
+          <Text as='h1' fontSize={[2, 6]} textAlign={['center', 'left']} mb={[3, 0]}>
             {texts[currentStep]}
           </Text>
           <Button>Contact us</Button>
-        </Box>
+        </Flex>
       </Flex>
-      <Text fontWeight='light' color='gray' fontSize={2} ml={4} mt={5}>
+      <Text fontWeight='light' color='gray' fontSize={[1, 2]} ml={[0, 4]} mt={[3, 5]}>
         Sustainable technologies have been so affordable.
         Produce and exchange energy maximizing the power of renewable sources.
       </Text>
