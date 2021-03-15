@@ -16,10 +16,10 @@ const Button = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes[4]};
 `
-export const ImageSlider = ({ image, currentStep, onPrev = () => {}, onNext = () => {} }) => {
+export const ImageSlider = ({ images, currentStep, onPrev = () => {}, onNext = () => {} }) => {
   return (
     <Box position='relative'>
-      <img src={image} alt='Forest' />
+      <img src={images[currentStep]} alt='Forest' />
       <Box
         display='flex'
         position='absolute'

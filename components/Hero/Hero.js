@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Box } from '@/primitives/Box'
 import { GridLayout, GridItem } from '@/primitives/Grid'
 import { ImageSlider } from './ImageSlider'
@@ -28,6 +28,8 @@ const heroInfo = [
   }
 ]
 
+const images = heroInfo.map(info => info.image)
+const texts = heroInfo.map(info => info.text)
 const heroInfoLast = heroInfo.length - 1
 
 export const Hero = () => {
@@ -48,14 +50,16 @@ export const Hero = () => {
     }
   }
 
+  const handleDotClick = (dotIndex) => setCurrentStep(dotIndex)
+
   return (
     <Box height='calc(100vh - 94px)' mr={3} ml={3}>
       <GridLayout height='100%' gridTemplateColumns='1fr 1fr'>
         <GridItem>
-          <TextSlider text={heroInfo[currentStep].text} />
+          <TextSlider currentStep={currentStep} texts={texts} onDotClick={handleDotClick} />
         </GridItem>
         <GridItem>
-          <ImageSlider currentStep={currentStep} onPrev={prevStep} onNext={nextStep} image={heroInfo[currentStep].image} />
+          <ImageSlider currentStep={currentStep} onPrev={prevStep} onNext={nextStep} images={images} />
         </GridItem>
       </GridLayout>
     </Box>

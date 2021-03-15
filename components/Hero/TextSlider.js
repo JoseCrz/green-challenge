@@ -3,30 +3,34 @@ import { Button } from '@/components/Button'
 import { Text } from '@/primitives/Text'
 import { Box } from '@/primitives/Box'
 import { Flex } from '@/primitives/Flex'
-import { GridLayout, GridItem } from '@/primitives/Grid'
 
 const Dot = styled.div`
   cursor: pointer;
   height: 10px;
   width: 10px;
   border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.gray};
+  background-color: ${({ theme, isActive }) => isActive ? theme.colors.black : theme.colors.gray};
   margin-top: ${({ theme }) => theme.space[2]};
+  transition: cubic-bezier(0.645, 0.045, 0.355, 1) .2s;
+
+  &:hover {
+    transform: scale(1.35);
+  }
 `
 
-const DotSlider = () => {
+const DotSlider = ({ elements, onDotClick, currentStep }) => {
   return (
     <Box>
-      <Dot />
-      <Dot />
-      <Dot />
-      <Dot />
-      <Dot />
+      {
+        elements.map((element, index) =>
+          (<Dot key={`dot-${index}`} onClick={() => onDotClick(index)} isActive={currentStep === index} />)
+        )
+      }
     </Box>
   )
 }
 
-export const TextSlider = ({ text }) => {
+export const TextSlider = ({ texts, currentStep, onDotClick }) => {
   return (
     <>
       <Flex>
@@ -38,12 +42,12 @@ export const TextSlider = ({ text }) => {
             alignItems='center'
             mr={4}
           >
-            <DotSlider />
+            <DotSlider elements={texts} onDotClick={onDotClick} currentStep={currentStep} />
           </Flex>
         </Box>
         <Box>
           <Text as='h1' fontSize={6}>
-            {text}
+            {texts[currentStep]}
           </Text>
           <Button>Contact us</Button>
         </Box>
