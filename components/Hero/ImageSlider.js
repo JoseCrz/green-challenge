@@ -16,6 +16,7 @@ const Button = styled.button`
   background: ${({ theme }) => theme.colors.black};
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fontSizes[4]};
+  padding: 0;
 `
 export const ImageSlider = ({ images, currentStep, onPrev = () => {}, onNext = () => {} }) => {
   return (
