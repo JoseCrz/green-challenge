@@ -28,17 +28,25 @@ const Li = ({ children }) => {
   )
 }
 
+const A = styled.a`
+  text-decoration: none;
+  color: ${({ theme }) => theme.colors.black};
+  &:hover {
+  color: ${({ theme }) => theme.colors.green};
+  }
+`
+
 export const Header = () => {
   return (
     <StyledHeader>
       <Logo size='30px' />
       <nav>
         <Ul>
-          <Li>About</Li>
-          <Li>App</Li>
-          <Li>Plans</Li>
-          <Li>FAQ</Li>
-          <Li>Contacts</Li>
+          <Li><A href='#'> About</A></Li>
+          <Li><A href='#'>App</A></Li>
+          <Li><A href='#'>Plans</A></Li>
+          <Li><A href='#'>FAQ</A></Li>
+          <Li><A href='#'>Contacts</A></Li>
         </Ul>
       </nav>
     </StyledHeader>
