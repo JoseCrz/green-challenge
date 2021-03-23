@@ -33,7 +33,10 @@ const DotSlider = ({ elements, onDotClick, currentStep }) => {
 export const TextSlider = ({ texts, currentStep, onDotClick }) => {
   return (
     <>
-      <Flex flexDirection={['column-reverse', 'row']}>
+      <Flex
+        flexDirection={['column-reverse', 'row']}
+        pt={[0, 0, 5]}
+      >
         <Box>
           <Flex
             height='100%'
